@@ -220,3 +220,84 @@
 #optionsframework .button-primary {
 	float:right;
 }
+
+/* Top icon */
+
+#icon-settings, #icon-import-export {
+    background-attachment: scroll;
+    background-clip: border-box;
+    background-color: transparent;
+    background-origin: padding-box;
+    background-repeat: no-repeat;
+    background-size: auto auto;
+}
+
+#icon-settings {
+    background-image: url("../images/options-settings32.png?");
+}
+
+#icon-import-export {
+    background-image: url("../images/import-export32.png?");
+}
+
+/* Extern Links on top */
+
+.extern-links {
+	margin:10px 0;
+	padding: 10px 0;
+	max-width:764px;
+	text-align:right;
+}
+
+.extern-links a {
+	margin:0 0 0 20px;
+	float: right; 
+	display: block; 
+	font: 14px Arial, Helvetica, sans-serif; 
+	color: #34759b;  
+	text-decoration: none; 
+}
+
+span.icon span { 
+	padding: 0px 0px 0px 40px; 
+	display: block; 
+	height: 34px; 
+	line-height: 32px; 
+}
+ 
+a.icon-a:hover { 
+	text-decoration: underline; 
+}
+ 
+a.icon-support span.icon span { 
+	background: url(../images/support.png) no-repeat 15px 8px; 
+}
+
+a.icon-documentation span.icon span { 
+	background: url(../images/documentation.png) no-repeat 15px 8px; 
+}
+
+a.icon-gallery span.icon span { 
+	background: url(../images/gallery.png) no-repeat 15px 8px; 
+}
+ 
+.clear {
+	display:block;
+	clear:both;
+}
+
+/* background:url("../images/ico-delete.png") no-repeat; */
+
+/* Backup Settings */
+
+.import, .export {
+	margin: 20px 0;
+	padding: 0 0 20px 10px;
+	border: 1px solid #ECECEC;
+	background-color: #f9f9f9;
+}
+
+.import label {
+	display:block;
+	padding: 0 0 5px 0;
+}

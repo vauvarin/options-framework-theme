@@ -49,6 +49,14 @@ function optionsframework_rolescheck () {
 	}
 }
 
+/* Loads the file for option backup */
+
+add_action('init', 'optionsframework_load_backup' );
+
+function optionsframework_load_backup() {
+	require_once dirname( __FILE__ ) . '/options-backup.php';
+}
+
 /* Loads the file for option sanitization */
 
 add_action('init', 'optionsframework_load_sanitization' );
@@ -100,7 +108,9 @@ function optionsframework_init() {
 	}
 	
 	// Registers the settings fields and callback
-	register_setting( 'optionsframework', $option_name, 'optionsframework_validate' );
+	if (!isset( $_POST['OptionsFramework-backup-import'] )) {
+		register_setting( 'optionsframework', $option_name, 'optionsframework_validate' );
+	}
 }
 
 /* 
@@ -157,7 +167,15 @@ function optionsframework_setdefaults() {
 if ( !function_exists( 'optionsframework_add_page' ) ) {
 function optionsframework_add_page() {
 
-	$of_page = add_theme_page('Theme Options', 'Theme Options', 'edit_theme_options', 'options-framework','optionsframework_page');
+	$of_page = add_menu_page(
+		'Options', 
+		'Options', 
+		'edit_theme_options', 
+		'options-framework',
+		'optionsframework_page',
+		OPTIONS_FRAMEWORK_DIRECTORY.'images/options-settings16.png',
+		61
+		);
 	
 	// Adds actions to hook in the required css and javascript
 	add_action("admin_print_styles-$of_page",'optionsframework_load_styles');
@@ -211,18 +229,38 @@ function optionsframework_page() {
 	?>
     
 	<div class="wrap">
-    <?php screen_icon( 'themes' ); ?>
+	<?php echo get_screen_icon( $screen = 'settings'); ?> 
+		<div class="extern-links">
+			<a class="icon-a icon-gallery" href='#' ><span class="icon"><span>Themes gallery</span></span></a>
+			<a class="icon-a icon-support" href='#' ><span class="icon"><span>Support</span></span></a>
+			<a class="icon-a icon-documentation" href='#' ><span class="icon"><span>Documentation</span></span></a>
+		</div>
+		<br class="clear" /> 
+
     <h2 class="nav-tab-wrapper">
         <?php echo $return[1]; ?>
     </h2>
     
     <div class="metabox-holder">
+
+
+
     <div id="optionsframework" class="postbox">
-		<form action="options.php" method="post">
+
+		<form action="options.php" method="post"> 
 		<?php settings_fields('optionsframework'); ?>
+
+
+		<?php /* Top buttons */ ?>
+		<div id="optionsframework-submit">
+			<input type="submit" class="button-primary" name="update" value="<?php esc_attr_e( 'Save Options' ); ?>" />
+            <input type="submit" class="reset-button button-secondary" name="reset" value="<?php esc_attr_e( 'Restore Defaults' ); ?>" onclick="return confirm( '<?php print esc_js( __( 'Click OK to reset. Any theme settings will be lost!' ) ); ?>' );" />
+            <div class="clear"></div>
+		</div>
 
 		<?php echo $return[0]; /* Settings */ ?>
         
+        <?php /* Bottom buttons */ ?>
         <div id="optionsframework-submit">
 			<input type="submit" class="button-primary" name="update" value="<?php esc_attr_e( 'Save Options' ); ?>" />
             <input type="submit" class="reset-button button-secondary" name="reset" value="<?php esc_attr_e( 'Restore Defaults' ); ?>" onclick="return confirm( '<?php print esc_js( __( 'Click OK to reset. Any theme settings will be lost!' ) ); ?>' );" />
