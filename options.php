@@ -61,8 +61,38 @@ function optionsframework_options() {
 		
 	$options = array();
 		
+			
+	
+		
 	$options[] = array( "name" => "Basic Settings",
 						"type" => "heading");
+		
+		
+	//slider 						
+	$options[] = array( "name" => "Slider",
+						"desc" => "min=0,max=100,step=1",
+						"id" => "example_slider",
+						"std" => "",
+						"type" => "slider",
+						"options" => array(
+							'min' => '0',
+							'max' => '100',
+							'step' => '1')
+						);	
+						
+						
+	//slider 						
+	$options[] = array( "name" => "Slider",
+						"desc" => "min=480,max=680,step=10",
+						"id" => "example_slider2",
+						"std" => "580",
+						"type" => "slider",
+						"options" => array(
+									'min' => '480',
+									'max' => '680',
+									'step' => '10')
+								);	
+								
 							
 	$options[] = array( "name" => "Input Text Mini",
 						"desc" => "A mini text input field.",
@@ -176,6 +206,10 @@ function optionsframework_options() {
 						"id" => "example_colorpicker",
 						"std" => "",
 						"type" => "color");
+		
+						
+						
+						
 						
 	$options[] = array( "name" => "Typography",
 						"desc" => "Example typography.",

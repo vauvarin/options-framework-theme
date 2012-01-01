@@ -4,6 +4,8 @@
 
 add_filter( 'of_sanitize_text', 'sanitize_text_field' );
 
+
+
 /* Textarea */
 
 function of_sanitize_textarea($input) {
@@ -63,6 +65,21 @@ add_filter( 'of_sanitize_multicheck', 'of_sanitize_multicheck', 10, 2 );
 /* Color Picker */
 
 add_filter( 'of_sanitize_color', 'of_sanitize_hex' );
+
+
+/* Slider */
+function of_sanitize_slider($input) {
+
+	if(is_numeric($input))
+	$output = $input;
+	else
+	$output = 0;
+	
+	return $output;
+}
+
+add_filter( 'of_sanitize_slider', 'of_sanitize_slider' );
+
 
 /* Uploader */
 
@@ -272,6 +289,8 @@ function of_sanitize_hex( $hex, $default = '' ) {
 	}
 	return $default;
 }
+
+
 
 /**
  * Get recognized font sizes.
