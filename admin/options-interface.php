@@ -269,6 +269,26 @@ function optionsframework_fields() {
 		
 		break;  
 		
+		
+		// Slider
+		
+		case "slider":
+		
+		if (isset($value['options'])){
+		if (isset($value['options']['min']))
+		$min = $value['options']['min'];
+		if (isset($value['options']['max']))
+		$max = $value['options']['max'];
+		if (isset($value['options']['step']))
+		$step = $value['options']['step'];
+		}
+		
+		$output .= '<div class="slider" min="'.$min.'" max="'.$max.'" step="'.$step.'"></div>';
+		$output .= '<div class="sliderValue"><input id="' . esc_attr( $value['id'] ) . '" name="' . esc_attr( $option_name . '[' . $value['id'] . ']' ) . '" type="text" value="' . esc_attr( $val ) . '" /></div>';
+		
+		
+		break;
+		
 		// Info
 		case "info":
 			$class = 'section';
